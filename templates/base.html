@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOKIS | High Contrast Streetwear</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+</head>
+<body>
+    <header class="header-logo">
+        <img class="imgquadrada" src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo NOKIS">
+        <h1 class="logo-titulo">NOKIS</h1>
+    </header>
+
+    <nav>
+        <a href="{{ url_for('index') }}">Início</a> |
+        <a href="{{ url_for('contato') }}">Contato</a> |
+        <a href="{{ url_for('login') }}">Login</a> |
+        <a href="{{ url_for('cadastro') }}">Cadastrar</a>
+    </nav>
+    <hr>
+
+    <main>
+        {% block conteudo %}
+        {% endblock %}
+    </main>
+</body>
+</html>
