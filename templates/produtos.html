@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Produtos - NOKIS{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>Catálogo NOKIS</h1>
+    <p>Coleção essencial monocromática com design contemporâneo.</p>
+</section>
+
+<div class="product-grid">
+    {% for produto in lista_produtos %}
+        <div class="product-card">
+            <div>
+                <h3>{{ produto.nome }}</h3>
+                <p>{{ produto.descricao }}</p>
+            </div>
+            <div class="price">{{ produto.preco }}</div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

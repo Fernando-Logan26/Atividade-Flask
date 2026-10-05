@@ -3,26 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOKIS | High Contrast Streetwear</title>
+    <title>{% block title %}NOKIS - Official Store{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
 </head>
 <body>
-    <header class="header-logo">
-        <img class="imgquadrada" src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo NOKIS">
-        <h1 class="logo-titulo">NOKIS</h1>
+
+    <!-- Cabeçalho / Navegação -->
+    <header class="header">
+        <div class="header-container">
+            <a href="{{ url_for('index') }}" class="logo-link">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="NOKIS Logo" class="logo">
+            </a>
+            <nav class="nav">
+                <a href="{{ url_for('index') }}">Início</a>
+                <a href="{{ url_for('produtos') }}">Produtos</a>
+                <a href="{{ url_for('contato') }}">Contato</a>
+                <a href="{{ url_for('login') }}">Login</a>
+                <a href="{{ url_for('cadastro') }}">Cadastrar</a>
+            </nav>
+        </div>
     </header>
 
-    <nav>
-        <a href="{{ url_for('index') }}">Início</a> |
-        <a href="{{ url_for('contato') }}">Contato</a> |
-        <a href="{{ url_for('login') }}">Login</a> |
-        <a href="{{ url_for('cadastro') }}">Cadastrar</a>
-    </nav>
-    <hr>
+    <!-- Bloco de Mensagens Feedback (Flash) -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div style="max-width: 1200px; margin: 20px auto; padding: 0 20px;">
+          {% for category, message in messages %}
+            <div style="background-color: #1a1a1a; color: #ffffff; border: 1px solid #333; padding: 15px; border-radius: 4px; text-align: center;">
+              {{ message }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
 
-    <main>
-        {% block conteudo %}
+    <!-- Conteúdo Principal Dinâmico -->
+    <main class="main-content">
+        {% block content %}
         {% endblock %}
     </main>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 NOKIS. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
 </body>
 </html>

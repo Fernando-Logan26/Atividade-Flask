@@ -1,23 +1,32 @@
 {% extends 'base.html' %}
 
-{% block conteudo %}
+{% block title %}Cadastro - NOKIS{% endblock %}
+
+{% block content %}
+<div class="form-container">
     <h2>Criar Conta NOKIS</h2>
+    <p style="margin-bottom: 20px; color: #aaa;">Preencha os dados abaixo para fazer parte da comunidade NOKIS:</p>
 
-    <p>Preencha os dados abaixo para fazer parte da comunidade NOKIS:</p>
+    <form action="{{ url_for('cadastro') }}" method="POST">
+        <div class="form-group">
+            <label for="nome">Nome Completo:</label>
+            <input type="text" id="nome" name="nome" required>
+        </div>
 
-    <form action="/salvarcadastro" method="POST">
-        <label for="nome_usuario">Nome de Usuário:</label><br>
-        <input type="text" id="nome_usuario" name="nome_usuario" value="{{ nome_login if nome_login else '' }}" required><br><br>
+        <div class="form-group">
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
 
-        <label for="email">E-mail:</label><br>
-        <input type="email" id="email" name="email" required><br><br>
+        <div class="form-group">
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" required>
+        </div>
 
-        <label for="senha">Senha:</label><br>
-        <input type="password" id="senha" name="senha" required><br><br>
-
-        <button type="submit">Finalizar Cadastro</button>
+        <button type="submit" class="btn">Finalizar Cadastro</button>
     </form>
 
     <br>
-    <a href="{{ url_for('login') }}">Já possui conta? Faça login</a>
+    <p style="text-align: center;"><a href="{{ url_for('login') }}" style="color: #fff;">Já possui conta? Faça login</a></p>
+</div>
 {% endblock %}

@@ -1,8 +1,29 @@
 {% extends 'base.html' %}
 
-{% block conteudo %}
+{% block title %}Contato - NOKIS{% endblock %}
+
+{% block content %}
+<div class="form-container">
     <h2>Fale Conosco</h2>
-    <p><b>Atendimento NOKIS Store</b></p>
-    <p><b>E-mail:</b> nokis@gmail.com</p>
-    <p><b>Telefone:</b> (11) 4000 - 8922</p>
-{% endblock %}  
+    <p style="margin-bottom: 20px; color: #aaa;">Atendimento NOKIS Store</p>
+    
+    <form action="{{ url_for('contato') }}" method="POST">
+        <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="mensagem">Mensagem:</label>
+            <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+        </div>
+
+        <button type="submit" class="btn">Enviar Mensagem</button>
+    </form>
+</div>
+{% endblock %}

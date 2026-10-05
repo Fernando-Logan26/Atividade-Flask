@@ -1,6 +1,7 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for, flash
 
 app_Fernando = Flask(__name__)
+app_Fernando.secret_key = 'nokis_chave_secreta'  # Necessário para usar flash messages
 
 # Dados do catálogo NOKIS
 PRODUTOS = [
@@ -38,16 +39,28 @@ def index():
 def produtos():
     return render_template('produtos.html', lista_produtos=PRODUTOS)
 
-@app_Fernando.route('/contato')
+@app_Fernando.route('/contato', methods=['GET', 'POST'])
 def contato():
+    if request.method == 'POST':
+        nome = request.form.get('nome')
+        flash(f'Obrigado pela mensagem, {nome}! Entraremos em contato em breve.', 'sucesso')
+        return redirect(url_for('contato'))
     return render_template('contato.html')
 
-@app_Fernando.route('/login')
+@app_Fernando.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        flash(f'Bem-vindo(a) de volta! Login efetuado para {email}.', 'sucesso')
+        return redirect(url_for('index'))
     return render_template('login.html')
 
-@app_Fernando.route('/cadastro')
+@app_Fernando.route('/cadastro', methods=['GET', 'POST'])
 def cadastro():
+    if request.method == 'POST':
+        nome = request.form.get('nome')
+        flash(f'Conta criada com sucesso para {nome}! Faça login para continuar.', 'sucesso')
+        return redirect(url_for('login'))
     return render_template('cadastro.html')
 
 if __name__ == '__main__':
