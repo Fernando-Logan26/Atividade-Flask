@@ -11,11 +11,14 @@
 <div class="product-grid">
     {% for produto in lista_produtos %}
         <div class="product-card">
-            <div>
+            <div class="product-image-box">
+                <img src="{{ url_for('static', filename=produto.imagem) }}" alt="{{ produto.nome }}" class="product-img" onerror="this.src='https://via.placeholder.com/300x300/1a1a1a/ffffff?text=NOKIS'">
+            </div>
+            <div style="margin-top: 15px;">
                 <h3>{{ produto.nome }}</h3>
                 <p>{{ produto.descricao }}</p>
             </div>
-            <div class="price">{{ produto.preco }}</div>
+            <div class="price" style="margin-top: 10px;">{{ produto.preco }}</div>
         </div>
     {% endfor %}
 </div>

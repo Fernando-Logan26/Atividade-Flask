@@ -18,8 +18,13 @@
                 <a href="{{ url_for('index') }}">Início</a>
                 <a href="{{ url_for('produtos') }}">Produtos</a>
                 <a href="{{ url_for('contato') }}">Contato</a>
-                <a href="{{ url_for('login') }}">Login</a>
-                <a href="{{ url_for('cadastro') }}">Cadastrar</a>
+                {% if session.get('usuario') %}
+                    <a href="{{ url_for('usuario') }}">Perfil</a>
+                    <a href="{{ url_for('logout') }}" style="color: #ff5555;">Sair</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}">Login</a>
+                    <a href="{{ url_for('cadastro') }}">Cadastrar</a>
+                {% endif %}
             </nav>
         </div>
     </header>
@@ -29,7 +34,7 @@
       {% if messages %}
         <div style="max-width: 1200px; margin: 20px auto; padding: 0 20px;">
           {% for category, message in messages %}
-            <div style="background-color: #1a1a1a; color: #ffffff; border: 1px solid #333; padding: 15px; border-radius: 4px; text-align: center;">
+            <div class="flash-message" style="background-color: #1a1a1a; color: #ffffff; border: 1px solid #333; padding: 15px; border-radius: 4px; text-align: center;">
               {{ message }}
             </div>
           {% endfor %}
@@ -50,5 +55,7 @@
         </div>
     </footer>
 
+    <!-- Ficheiro JavaScript do Projeto -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 </body>
 </html>

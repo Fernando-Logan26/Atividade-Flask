@@ -188,3 +188,25 @@ body {
     color: #666666;
     font-size: 0.85rem;
 }
+/* Imagens do Catálogo */
+.product-image-box {
+    width: 100%;
+    height: 220px;
+    background-color: #0d0d0d;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-img {
+    transform: scale(1.05);
+}

@@ -3,17 +3,34 @@
 {% block title %}Perfil - NOKIS{% endblock %}
 
 {% block content %}
-<div class="form-container">
-    <h2>Perfil do Cliente</h2>
+<div class="form-container" style="max-width: 500px; text-align: center; margin: 40px auto;">
+    <h2>Perfil do Utilizador</h2>
     <br>
-    <p>
-        <img class="logo" src="{{ url_for('static', filename='img/logo.png') }}" alt="Foto de Perfil" style="margin-bottom: 15px;">
-        <br>
-        <b>Nome:</b> {{ nome if nome else dados.get('nome', 'Cliente NOKIS') }}<br/><br/>
-        {% if dados %}
-            <b>Status:</b> {{ dados.get('profissao', 'Membro VIP') }}<br/><br/>
-            <b>Preferência:</b> {{ dados.get('disciplina', 'Streetwear Monocromático') }}
-        {% endif %}
-    </p>
+    <div style="margin-bottom: 20px;">
+        <img src="{{ url_for('static', filename='img/perfil.jpg') }}" alt="Foto de Perfil" style="width: 120px; height: 120px; border-radius: 50%; border: 2px solid #ffffff; object-fit: cover;" onerror="this.src='https://via.placeholder.com/120/333333/ffffff?text=NOKIS'">
+    </div>
+
+    <div style="text-align: left; background-color: #0d0d0d; padding: 20px; border-radius: 4px; border: 1px solid #222;">
+        <p style="margin-bottom: 10px;"><b>Nome:</b> {{ usuario.nome }}</p>
+        <p style="margin-bottom: 10px;"><b>E-mail / ID:</b> {{ usuario.email }}</p>
+        <p style="margin-bottom: 10px;"><b>Tipo de Conta:</b> 
+            {% if usuario.tipo == 'admin' %}
+                <span style="color: #ff5555; font-weight: bold;">Administrador</span>
+            {% else %}
+                <span style="color: #55ff55;">Cliente</span>
+            {% endif %}
+        </p>
+        <p style="margin-bottom: 10px;"><b>Status:</b> {{ usuario.status }}</p>
+        <p style="margin-bottom: 0;"><b>Estilo Preferido:</b> {{ usuario.preferencia }}</p>
+    </div>
+
+    {% if usuario.tipo == 'admin' %}
+        <div style="margin-top: 15px; padding: 10px; background-color: #1a1111; border: 1px solid #ff5555; border-radius: 4px; color: #ff8888; font-size: 0.85rem;">
+            Painel Admin Ativo: Tem permissões para gerir o catálogo e utilizadores.
+        </div>
+    {% endif %}
+
+    <br>
+    <a href="{{ url_for('logout') }}" class="btn" style="background-color: #333; color: #fff; text-decoration: none;">Encerrar Sessão</a>
 </div>
 {% endblock %}
